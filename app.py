@@ -37,11 +37,9 @@ def chat():
         )
 
         return jsonify({"reply": response.text})
-
-    except Exception:
-        app.logger.exception("Gemini request failed")
-        return jsonify({"error": "AI service temporarily unavailable"}), 500
-
+except Exception as e:
+    app.logger.exception("Gemini request failed")
+    return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
