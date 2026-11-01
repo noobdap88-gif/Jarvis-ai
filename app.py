@@ -37,7 +37,8 @@ def chat():
         )
 
         return jsonify({"reply": response.text})
-		
+
+
 except Exception as e:
     app.logger.exception("Gemini request failed")
     return jsonify({"error": str(e)}), 500
